@@ -1,0 +1,78 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ceaserCipher",
+            "request": "launch",
+            "mainClass": "cybersecurity.project1.ceaserCipher",
+            "projectName": "Java_d0f21970"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "console": "externalTerminal",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Hello",
+            "request": "launch",
+            "mainClass": "Labs.Lab2.hello.Hello",
+            "projectName": "Java_d0f21970"
+        },
+        {
+            "type": "java",
+            "name": "initial",
+            "request": "launch",
+            "mainClass": "Labs.Lab3.initialPro.initial",
+            "projectName": "Java_d0f21970"
+        },
+        {
+            "type": "java",
+            "name": "inputOutput",
+            "request": "launch",
+            "mainClass": "Labs.Lab3.inputOutputPro.inputOutput",
+            "projectName": "Java_d0f21970"
+        },
+        {
+            "type": "java",
+            "name": "addingTwoNums",
+            "request": "launch",
+            "mainClass": "Labs.Lab4.addPro.addingTwoNums",
+            "projectName": "Java_d0f21970"
+        },
+        {
+            "type": "java",
+            "name": "game1",
+            "request": "launch",
+            "mainClass": "Labs.Lab4.randomGuessingGame.game1",
+            "projectName": "Java_d0f21970"
+        },
+        {
+            "type": "java",
+            "name": "converterCtoF",
+            "request": "launch",
+            "mainClass": "Labs.Lab4.temperaturePro.converterCtoF",
+            "projectName": "Java_d0f21970"
+        },
+        {
+            "type": "java",
+            "name": "calculator",
+            "request": "launch",
+            "mainClass": "projects.project1.calculator",
+            "projectName": "Java_d0f21970"
+        },
+        {
+            "type": "java",
+            "name": "test",
+            "request": "launch",
+            "mainClass": "test.test",
+            "projectName": "Java_d0f21970"
+        }
+    ]
+}
