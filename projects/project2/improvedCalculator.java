@@ -17,29 +17,29 @@ public class improvedCalculator{
              * Prints out a menu of actions and checks to make sure the action is in the menu.
              */
             String userAction = "";
-            String[] actions = {"+", "-", "*", "/", "%", "E"};
+            String[] actions = {"ADD", "SUBTRACT", "MULTIPLY", "DIVIDE", "MODULUS", "E"};
             List<String> actionList = Arrays.asList(actions);
             while (!(actionList.contains(userAction))) {
                 System.out.print("MENU: \n  ADD, +\n  SUBTRACT,-\n  MULTIPLY, *\n DIVIDE, /\n  MODULUS, %\n  EXIT, E\n");
                 System.out.print("Enter an Action: ");
                 userAction = reader.nextLine();
             }
-            System.out.println(userAction);
+            if (userAction.equals("E")){
+                break;
+            }
             System.out.print("Enter a number: ");
             float userNum2 = reader.nextFloat();
             reader.nextLine();
-            if(userAction == "+"){
+            if(userAction.equals("ADD")){
                 System.out.println("Total = " + addition(userNum1, userNum2));
-            }else if (userAction == "-"){
+            }else if (userAction.equals("SUBTRACT")){
                 System.out.println("Total = " + subtraction(userNum1, userNum2));
-            }else if (userAction == "*"){
+            }else if (userAction.equals("MULTIPLY")){
                 System.out.println("Total = " + multiplication(userNum1, userNum2));
-            }else if (userAction == "/"){
+            }else if (userAction.equals("DIVIDE")){
                 System.out.println("Total = " + division(userNum1, userNum2));
-            }else if (userAction == "%"){
+            }else if (userAction.equals("MODULUS")){
                 System.out.println("Total = " + mod(userNum1, userNum2));
-            }else if (userAction == "E"){
-                break;
             }
             userNum1 = userNum2;
             
