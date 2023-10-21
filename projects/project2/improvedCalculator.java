@@ -3,8 +3,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-
-
 public class improvedCalculator{
     public static void main(String[] args) {
         System.out.println("Welcome to the coolest calculator known to man!");
@@ -13,10 +11,10 @@ public class improvedCalculator{
         float userNum1 = reader.nextFloat();
         reader.nextLine();
         while(true){
-            /*
-             * Prints out a menu of actions and checks to make sure the action is in the menu.
-             */
+            // Prints out a menu of actions and checks to make 
+            // sure the action is in the menu.
             String userAction = "";
+            Float total = null;
             String[] actions = {"ADD", "SUBTRACT", "MULTIPLY", "DIVIDE", "MODULUS", "E"};
             List<String> actionList = Arrays.asList(actions);
             while (!(actionList.contains(userAction))) {
@@ -24,42 +22,52 @@ public class improvedCalculator{
                 System.out.print("Enter an Action: ");
                 userAction = reader.nextLine();
             }
+            // If the user action is 'E' closes the program.
             if (userAction.equals("E")){
-                break;
+                reader.close();
+                System.out.println("Thank you for using the coolest calculator known to man!");
+                System.exit(0);
             }
             System.out.print("Enter a number: ");
             float userNum2 = reader.nextFloat();
             reader.nextLine();
+            // Uses the user's action and numbers to perform calculations
             if(userAction.equals("ADD")){
-                System.out.println("Total = " + addition(userNum1, userNum2));
+                total = addition(userNum1, userNum2);
+                System.out.println("Total = " + total);
             }else if (userAction.equals("SUBTRACT")){
-                System.out.println("Total = " + subtraction(userNum1, userNum2));
+                total = subtraction(userNum1, userNum2);
+                System.out.println("Total = " + total);
             }else if (userAction.equals("MULTIPLY")){
-                System.out.println("Total = " + multiplication(userNum1, userNum2));
+                total = multiplication(userNum1, userNum2);
+                System.out.println("Total = " + total);
             }else if (userAction.equals("DIVIDE")){
-                System.out.println("Total = " + division(userNum1, userNum2));
+                total = division(userNum1, userNum2);
+                System.out.println("Total = " + total);
             }else if (userAction.equals("MODULUS")){
-                System.out.println("Total = " + mod(userNum1, userNum2));
+                total = mod(userNum1, userNum2);
+                System.out.println("Total = " + total);
             }
-            userNum1 = userNum2;
-            
+            userNum1 = total;
         }
-        reader.close();
-        System.out.println("Thank you for using the coolest calculator known to man!");
-        System.exit(0);
     }
+    // Adds two numbers
     public static float addition(float num1, float num2){
         return num1 + num2;
     }
+    // Subtracts two numbers
     public static float subtraction(float num1, float num2){
         return num1 - num2;
     }
+    // Multiplys two numbers
     public static float multiplication(float num1, float num2){
         return num1 * num2;
     }
+    // Divides two numbers
     public static float division(float num1, float num2){
         return num1 / num2;
     }
+    // Mods two numbers
     public static float mod(float num1, float num2){
         return num1 % num2;
     }
