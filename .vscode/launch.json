@@ -6,20 +6,6 @@
     "configurations": [
         {
             "type": "java",
-            "name": "HelloApplication",
-            "request": "launch",
-            "mainClass": "com.example.demo/com.example.demo.HelloApplication",
-            "projectName": "demo"
-        },
-        {
-            "type": "java",
-            "name": "ceaserCipher",
-            "request": "launch",
-            "mainClass": "cybersecurity.project1.ceaserCipher",
-            "projectName": "Java_d0f21970"
-        },
-        {
-            "type": "java",
             "name": "Current File",
             "request": "launch",
             "console": "externalTerminal",
