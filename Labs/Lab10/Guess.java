@@ -1,3 +1,4 @@
+package Labs.Lab10;
 import java.util.Random;
 public class Guess {
     // Creates a private variable and generates a random between 1 and 100
