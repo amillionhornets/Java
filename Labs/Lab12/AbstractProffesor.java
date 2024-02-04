@@ -26,8 +26,11 @@ public class AbstractProffesor extends AbstractPerson{
     }
     @Override
     public void printInfo() {
-        super.printInfo();
+        // super.printInfo();
         System.out.println("Degree: "+ degree + "\nUniversity: " + university+ "\nYear Graduated: " + yearGraduated);
+    }
+    public void printNameAndEmail(){
+        System.out.println("Name: " + getName() + "\nEmail: " + getEmail());
     }
     AbstractProffesor(String name, String email, String degree, String university, int yearGraduated)
     {

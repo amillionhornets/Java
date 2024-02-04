@@ -15,9 +15,13 @@ public class AbstractStudent extends AbstractPerson{
     public String getMajor(){
         return major;
     }
-    @Override
+    
     public void printInfo() {
         System.out.println("Major: " + major + "\nYear in School: " + yearInSchool);
+    }
+    public void printNameAndEmail(){
+        System.out.println("Name: " + getName() + "\nEmail: " + getEmail());
+        
     }
     AbstractStudent(String name, String email, String major, int yearInSchool){
         super(name, email);

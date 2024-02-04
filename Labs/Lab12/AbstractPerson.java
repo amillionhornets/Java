@@ -16,6 +16,7 @@ abstract class AbstractPerson {
         return email;
     }
     public abstract void printInfo();
+    public abstract void printNameAndEmail();
     AbstractPerson(String name, String email)
     {
         this.name = name;
