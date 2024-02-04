@@ -28,8 +28,8 @@ public class kernelTest {
                             double StDG = getStandardDeviantion(kernel, meanG, 0xff00, 8);
                             double StDB = getStandardDeviantion(kernel, meanB, 0xff, 0);
                             int red = getNormalDistrubution(kernel[x][y] & 0xff0000 >> 16, StDR);
-                            int green = getNormalDistrubution(kernel[x][y] & 0xff0000 >> 0, StDR);
-                            int blue = getNormalDistrubution(kernel[x][y] & 0xff0000 >> 8, StDR);
+                            int green = getNormalDistrubution(kernel[x][y] & 0xff0000 >> 0, StDG);
+                            int blue = getNormalDistrubution(kernel[x][y] & 0xff0000 >> 8, StDB);
                             Color newPixelColor = new Color(red + green + blue);
                     
                 }
@@ -60,7 +60,7 @@ public class kernelTest {
     }
     // Simulates the normal distribution and returns the new color value for the current pixel
     private static int getNormalDistrubution(int x, double standardDeviation) {
-        double newBinaryColor = (1/(2*Math.PI*Math.pow(standardDeviation, 2))) * Math.pow(Math.E, -(x * x)/2*(standardDeviation * standardDeviation));
+        double newBinaryColor = (1/(Math.sqrt(2*Math.PI*Math.pow(standardDeviation, 2)))) * Math.pow(Math.E, -((x * x)/(2*(standardDeviation * standardDeviation))));
         return (int)newBinaryColor;
     }
     private static double getKernelMean(int[][] kernel,int shift, int bitShift){
@@ -97,7 +97,12 @@ public class kernelTest {
         // Round StD to 3 deciaml places
         return ((double)Math.round(standartDeviation * 1000)/1000);
     }
-    
+    /*
+     * Input Kernel Data searches the relative pixels to the current x and y
+     * If the new positions of x or y is negative or is greater than the bounds of the image
+     *  set the kernel value to 256.
+     * If the new position are on the image get the rgb value of that pixel
+     */
     private static int[][] inputKernelData(int currentX, int currentY, int[][] kernel, BufferedImage nonBlurredImage) {
         int colorBinary[][] = new int[7][7];
         for(int y = -3; y <= Math.floor(kernel.length/2); y++){
@@ -106,7 +111,7 @@ public class kernelTest {
                 int newY = currentY + y;
                 int kernelXpos = (x + (kernel.length/2));
                 int kernelYpos = (y + (kernel.length/2));
-                if(newX >= 0 && newY >= 0){
+                if(newX >= 0 && newY >= 0 && newY <= nonBlurredImage.getHeight() && newX <= nonBlurredImage.getWidth()){
                     colorBinary[kernelXpos][kernelYpos] = nonBlurredImage.getRGB(newX, newY);
                 }else{
                     colorBinary[kernelXpos][kernelYpos] = 256;
