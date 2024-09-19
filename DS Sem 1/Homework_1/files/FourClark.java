@@ -8,6 +8,9 @@ import java.util.Arrays;
 
 public class FourClark {
     public static void main(String[] args) {
+        // Need to get the half gaps file from here to run this program -> 
+        //    https://tinyurl.com/24bvsnaf
+        // It was to large for GitHub
         byte [] bytes = getFileBytes("files\\half_gaps.bin") ;
         long [] gaps = new long[bytes.length];
         for (int i = 0; i < bytes.length; i++){
