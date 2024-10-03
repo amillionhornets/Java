@@ -1,10 +1,12 @@
 
 def adjacentThirteen(longNum, pivot):
     thirteenNums = []
-    i = 13
-    while(i + 13 <= len(longNum)):
-        thirteenNums.append(longNum[i])
-        return thirteenNums
+    i = pivot
+    if(i + 13 > len(longNum)):
+        return ''
+    for j in range(i, i + 13):
+        thirteenNums.append(longNum[j])
+    return thirteenNums
     
 def getProduct(adjacentNums):
     product = 1
