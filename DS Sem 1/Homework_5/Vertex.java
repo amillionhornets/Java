@@ -1,73 +1,116 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class Vertex {
-    final static int CONT = 2;
+public class Vertex implements Comparable<Vertex> {
+  final static int CONT = 2;
 
-    public int utility = CONT;
-    public int[] board;
-    public ArrayList<Vertex> children;
+  public byte utility = CONT;
+  public byte size;
+  public byte[] board;
+  public ArrayList<Vertex> children;
 
-    public Vertex(int[] board) {
-        this.board = board;
-        this.children = new ArrayList<Vertex>();
-    }
+  public Vertex(int size) {
+    this.size = (byte)size;
+    this.board = new byte[this.size * this.size];
+    this.children = new ArrayList<Vertex>();
+  }
 
-    public int minimax(int turn) {
-        if (turn == 1) {
-            this.utility = Integer.MIN_VALUE;
-            for (int i = 0; i < this.children.size(); i++)
-                if (this.utility < this.children.get(i).utility)
-                    this.utility = this.children.get(i).utility;
-        } else {
-            this.utility = Integer.MAX_VALUE;
-            for (int i = 0; i < this.children.size(); i++)
-                if (this.utility > this.children.get(i).utility)
-                    this.utility = this.children.get(i).utility;
+  public byte minimax(int turn) {
+    if (turn == 1)
+      return (this.utility = this.max().utility);
+    return (this.utility = this.min().utility);
+  }
+
+  public byte terminal() {
+    int n = this.size;
+    byte[] b = this.board;
+
+    for (int i = 0; i < n; i++) { // rows
+      boolean rowWin = true;
+      for (int j = 1; j < n; j++) {
+        if (b[i * n + j] == 0 || b[i * n + j] != b[i * n + j - 1]) {
+          rowWin = false;
+          break;
         }
-        return this.utility;
+      }
+      if (rowWin)
+        return b[i * n];
     }
 
-    public int terminal() {
-        int[] b = this.board;
-        if (b[0] != 0 && b[0] == b[1] && b[1] == b[2])
-            return b[0];
-        if (b[3] != 0 && b[3] == b[4] && b[4] == b[5])
-            return b[3];
-        if (b[6] != 0 && b[6] == b[7] && b[7] == b[8])
-            return b[6];
-        if (b[0] != 0 && b[0] == b[3] && b[3] == b[6])
-            return b[0];
-        if (b[1] != 0 && b[1] == b[4] && b[4] == b[7])
-            return b[1];
-        if (b[2] != 0 && b[2] == b[5] && b[5] == b[8])
-            return b[2];
-        if (b[0] != 0 && b[0] == b[4] && b[4] == b[8])
-            return b[0];
-        if (b[2] != 0 && b[2] == b[4] && b[4] == b[6])
-            return b[2];
-        if (!this.contains(0, b))
-            return 0;
+    for (int j = 0; j < n; j++) { // columns
+      boolean colWin = true;
+      for (int i = 1; i < n; i++) {
+        if (b[i * n + j] == 0 || b[i * n + j] != b[(i - 1) * n + j]) {
+          colWin = false;
+          break;
+        }
+      }
+      if (colWin)
+        return b[j];
+    }
+
+    boolean diagWin = true;
+    for (int i = 1; i < n; i++) { // diagonal
+      if (b[i * n + i] == 0 || b[i * n + i] != b[(i - 1) * n + i - 1]) {
+        diagWin = false;
+        break;
+      }
+    }
+    if (diagWin)
+      return b[0];
+
+    diagWin = true;
+    for (int i = 1; i < n; i++) { // anti-diagonal
+      int k = i * n + (n - i - 1);
+      if (b[k] == 0 || b[k] != b[(i - 1) * n + (n - i)]) {
+        diagWin = false;
+        break;
+      }
+    }
+    if (diagWin)
+      return b[n - 1];
+
+    for (int cell : b) { // game CONTinued
+      if (cell == 0)
         return CONT;
     }
+    return 0; // draw
+  }
 
-    public boolean contains(int x, int[] arr) {
-        for (int i = 0; i < arr.length; i++)
-            if (arr[i] == x)
-                return true;
-        return false;
-    }
+  public void grow(int place, int turn) {
+    if (this.board[place] != 0) // is marked
+      return;
+    Vertex child = new Vertex(this.size);
+    System.arraycopy(this.board, 0, child.board, 0, child.board.length);
+    child.board[place] = (byte)turn;
+    this.children.add(child);
+  }
 
-    public int[] boardCopy() {
-        int[] copy = new int[this.board.length];
-        System.arraycopy(this.board, 0, copy, 0, copy.length);
-        return copy;
+  public String toString() {
+    int size = this.size;
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < this.size; i++) {
+      for (int j = 0; j < this.size; j++) {
+        sb.append(String.format("%2d", this.board[i * size + j]));
+      }
+      sb.append("\n");
     }
+    return sb.toString();
+  }
 
-    public String toString() {
-        String f = " [%2d, %2d, %2d]";
-        String ret = String.format(f, board[0], board[1], board[2]);
-        ret += "\n" + String.format(f, board[3], board[4], board[5]);
-        ret += "\n" + String.format(f, board[6], board[7], board[8]);
-        return "[" + ret.substring(1) + "]";
-    }
+  public Vertex min() {
+    if (children.size() <= 0)
+      return this;
+    return Collections.min(this.children);
+  }
+
+  public Vertex max() {
+    if (children.size() <= 0)
+      return this;
+    return Collections.max(this.children);
+  }
+
+  public int compareTo(final Vertex o) {
+    return Integer.compare(this.utility, o.utility);
+  }
 }
