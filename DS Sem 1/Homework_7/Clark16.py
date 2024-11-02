@@ -1,4 +1,4 @@
-# Euler's problemb 16 project digit sum
+# Euler's problem 16 - project digit sum
 import math
 
 def sum(num):

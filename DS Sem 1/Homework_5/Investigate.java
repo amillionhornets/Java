@@ -1,9 +1,11 @@
 public class Investigate {
     public static void main(String [] args) {
         Minimax model = new Minimax (3);
+        System.out.println(model.root);
         System.out.println(DFS(model.root, 1));
         System.out.println(DFS(model.root, 0));
         System.out.println(DFS(model.root, -1));
+        System.out.println(DFS(model.root, 2));
     }
     public static int DFS(Vertex root, int turn){
         if(root.children.size() <= 0){
