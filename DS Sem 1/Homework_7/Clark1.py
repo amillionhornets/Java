@@ -1,4 +1,4 @@
-# Euler's problem 1- multiples of 3 and 5
+# Euler's problem 1 - multiples of 3 and 5
 
 def main():
     sum = 0
