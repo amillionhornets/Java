@@ -12,7 +12,6 @@ def sieve(n):
             
 def main():
     primes = sieve(10000000)
-    sum = 0
     num = 600851475143
     largeFactor = 0
     for i in range(2, len(primes)):

@@ -18,8 +18,6 @@ def main():
     sumSqr = sumOfSquare(100)
     sqrSum = squareOfSum(100)
     print(sqrSum - sumSqr)
-    # print(sumSqr)
-    # print(sqrSum)
 
 
 if __name__ == "__main__":
