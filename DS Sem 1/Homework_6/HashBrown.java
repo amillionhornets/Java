@@ -6,15 +6,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class HashBrown {
-  public static final long MAX = Integer.MAX_VALUE;
+  public static final long MAX = Long.MAX_VALUE;
 
   public static void main(String[] args) {
-    /*
-    System.out.printf("h( ) = %d%n", hash(" "));
-    System.out.printf("h(a) = %d%n", hash("a"));
-    System.out.printf("h(b) = %d%n", hash("b"));
-    System.out.printf("h(a ) = %d%n", hash("a "));
-    */
     String[] words = read("words_alpha.txt").split("\\s+");
     HashMap<Long, LinkedList<String>> map = new HashMap<>();
     
@@ -24,15 +18,25 @@ public class HashBrown {
       }
       map.get(hash(word)).add(word);
     }
-
-    for (Long key : map.keySet()) {
-      if (map.get(key).size() > 1) {
-        for (String word : map.get(key)) {
-          System.out.printf("h(%s) = ", word);
-        }
-        System.out.println(key);
+    int colls = 0;
+    LinkedList<String> cur = null;
+    for(Long hash : map.keySet()){
+      cur = map.get(hash);
+      if(cur.size() > 1){
+        colls++;
+        String ls = Arrays.toString(cur.toArray());
+        System.out.printf("%10d has %s%n", hash, ls);
       }
     }
+    System.out.printf("Colls = %d/%d%n", colls, words.length);
+    // for (Long key : map.keySet()) {
+    //   if (map.get(key).size() > 1) {
+    //     for (String word : map.get(key)) {
+    //       System.out.printf("h(%s) = ", word);
+    //     }
+    //     System.out.println(key);
+    //   }
+    // }
   }
 
   private static long base27(Object toHash) {
