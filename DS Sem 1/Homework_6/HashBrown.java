@@ -9,11 +9,22 @@ public class HashBrown {
 
   public static void main(String[] args) {
     String[] words = read("./words_alpha.txt").split("\n");
+
+    HashMap<Long, LinkedList<String>> map = new HashMap<>();
     for(String word : words){
-      System.out.println(word);
+      if(!map.containsKey(hash(word))){
+        map.put(hash(word), new LinkedList<String>());
+      map.get(hash(word)).add(word);
+      }
     }
-    // HashMap<Long, LinkedList<String>> map = new HashMap<>();
-    // map.put(1L, new LinkedList<String>());
+    for(Long key : map.keySet()){
+      if (map.get(key).size() > 1) {
+        for(String word : map.get(key)){
+          System.out.println(word);
+        }
+        System.out.println(key);
+      }
+    }
   }
 
   public static long base27(Object toHash) {
