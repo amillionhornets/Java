@@ -1,11 +1,19 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.LinkedList;
+
 public class HashBrown {
   public static final long MAX = Integer.MAX_VALUE;
 
   public static void main(String[] args) {
-    System.out.printf("h( ) = %d%n", hash(" "));
-    System.out.printf("h(a) = %d%n", hash("a"));
-    System.out.printf("h(b) = %d%n", hash("b"));
-    System.out.printf("h(a ) = %d%n", hash("a "));
+    String[] words = read("./words_alpha.txt").split("\n");
+    for(String word : words){
+      System.out.println(word);
+    }
+    // HashMap<Long, LinkedList<String>> map = new HashMap<>();
+    // map.put(1L, new LinkedList<String>());
   }
 
   public static long base27(Object toHash) {
@@ -24,5 +32,15 @@ public class HashBrown {
 
   public static long hash(Object toHash) {
     return Math.floorMod(base27(toHash), MAX);
+  }
+
+  public static String read(String path) {
+    String ret = null;
+    try {
+      ret = new String(Files.readAllBytes(Paths.get(path)));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return ret;
   }
 }
