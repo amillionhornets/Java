@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -8,26 +9,33 @@ public class HashBrown {
   public static final long MAX = Integer.MAX_VALUE;
 
   public static void main(String[] args) {
-    String[] words = read("./words_alpha.txt").split("\n");
-
+    /*
+    System.out.printf("h( ) = %d%n", hash(" "));
+    System.out.printf("h(a) = %d%n", hash("a"));
+    System.out.printf("h(b) = %d%n", hash("b"));
+    System.out.printf("h(a ) = %d%n", hash("a "));
+    */
+    String[] words = read("words_alpha.txt").split("\\s+");
     HashMap<Long, LinkedList<String>> map = new HashMap<>();
-    for(String word : words){
-      if(!map.containsKey(hash(word))){
+    
+    for (String word : words) {
+      if (!map.containsKey(hash(word))) {
         map.put(hash(word), new LinkedList<String>());
-      map.get(hash(word)).add(word);
       }
+      map.get(hash(word)).add(word);
     }
-    for(Long key : map.keySet()){
+
+    for (Long key : map.keySet()) {
       if (map.get(key).size() > 1) {
-        for(String word : map.get(key)){
-          System.out.println(word);
+        for (String word : map.get(key)) {
+          System.out.printf("h(%s) = ", word);
         }
         System.out.println(key);
       }
     }
   }
 
-  public static long base27(Object toHash) {
+  private static long base27(Object toHash) {
     String s = String.format("%s", toHash);
     long base = 27; // 26 alphabet and a blank-space
     long offset = 'a' - 1;
@@ -46,12 +54,12 @@ public class HashBrown {
   }
 
   public static String read(String path) {
-    String ret = null;
-    try {
-      ret = new String(Files.readAllBytes(Paths.get(path)));
+    byte[] ret = null;
+    try { 
+        ret = Files.readAllBytes(Paths.get(path));
     } catch (IOException e) {
-      e.printStackTrace();
+        e.printStackTrace();
     }
-    return ret;
+    return new String(ret);
   }
 }
