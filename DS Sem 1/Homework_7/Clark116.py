@@ -9,12 +9,31 @@ def findGreenTiles(greyTiles, patterns, curr):
         greyTiles[curr] = 1
         greyTiles[curr + 1] = 1
         greyTiles[curr + 2] = 1
-        findRedTiles(greyTiles, patterns, curr + 3)
+        findGreenTiles(greyTiles, patterns, curr + 3)
 
         greyTiles[curr] = 0
         greyTiles[curr + 1] = 0
         greyTiles[curr + 2] = 0
-    findRedTiles(greyTiles, patterns, curr+1)
+    findGreenTiles(greyTiles, patterns, curr+1)
+    return patterns
+    
+def findBlueTiles(greyTiles, patterns, curr):
+    if checkTilesBlue(greyTiles) and greyTiles not in patterns:
+        patterns.append(greyTiles[:])
+    if curr >= len(greyTiles):
+        return patterns
+    if curr + 3 < len(greyTiles) and greyTiles[curr] == 0 and greyTiles[curr + 1] == 0 and greyTiles[curr + 2] == 0 and greyTiles[curr + 3] == 0:
+        greyTiles[curr] = 1
+        greyTiles[curr + 1] = 1
+        greyTiles[curr + 2] = 1
+        greyTiles[curr + 3] = 1
+        findBlueTiles(greyTiles, patterns, curr + 4)
+
+        greyTiles[curr] = 0
+        greyTiles[curr + 1] = 0
+        greyTiles[curr + 2] = 0
+        greyTiles[curr + 3] = 0
+    findBlueTiles(greyTiles, patterns, curr+1)
     return patterns
 
 def findRedTiles(greyTiles, patterns, curr):
@@ -55,11 +74,19 @@ def checkTilesBlue(greyTiles):
     return(blueCount >= 1)
 
 def main():
-    greys = [0,0,0,0,0]
-    patterns = []
+    greys = []
+    n = 50
+    for i in range(n):
+        greys.append(0)
     # for pattern in findGreenTiles(greys, patterns, 0):
     #     print(pattern)
-    print(len(findGreenTiles(greys, patterns, 0)))
+    patterns = []
+    reds = len(findRedTiles(greys, patterns, 0))
+    patterns = []
+    greens = len(findGreenTiles(greys, patterns, 0))
+    patterns = []
+    blues = len(findBlueTiles(greys, patterns, 0))
+    print(reds + greens + blues)
 
 
 
