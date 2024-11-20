@@ -29,14 +29,6 @@ public class HashBrown {
       }
     }
     System.out.printf("Colls = %d/%d%n", colls, words.length);
-    // for (Long key : map.keySet()) {
-    //   if (map.get(key).size() > 1) {
-    //     for (String word : map.get(key)) {
-    //       System.out.printf("h(%s) = ", word);
-    //     }
-    //     System.out.println(key);
-    //   }
-    // }
   }
 
   private static long base27(Object toHash) {
