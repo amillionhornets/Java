@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class HashBrown {
-  public static final long MAX = Long.MAX_VALUE;
+  public static final long MAX = Integer.MAX_VALUE;
 
   public static void main(String[] args) {
     String[] words = read("words_alpha.txt").split("\\s+");

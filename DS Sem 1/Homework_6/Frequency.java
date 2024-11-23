@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Frequency {
     public static void main(String[] args) {
-        String contents = soClean(read("pg1497.txt"));
+        String contents = soClean(read("franzKafka.txt"));
         String[] words = contents.split("\\s+");
 
         HashMap<String, Integer> frequency = new HashMap<String, Integer>();

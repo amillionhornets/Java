@@ -1,10 +1,17 @@
 public class Graph {
     public static void main(String[] args) {
         // Vertex s = new Vertex();
-        // double[][] w = weights("dijkstra1.txt");
-        double[][] w = weights("bellmanford2.txt");
+        double[][] w = weights("dijkstra2.txt");
         Vertex[] q = initialiseSingleSource(w, 0);
-        // dijkstra(q, w, 0);
+        dijkstra(q, w, 0);
+        System.out.println("Dijkstra's ->");
+        for(Vertex v : q){
+            System.out.println(v.toString());;
+        }
+        System.out.println("");
+        System.out.println("Bellman ford's ->");
+        w = weights("dijkstra2.txt");
+        q = initialiseSingleSource(w, 0);
         bellmanFord(q, w, 0);
         for(Vertex v : q){
             System.out.println(v.toString());;
