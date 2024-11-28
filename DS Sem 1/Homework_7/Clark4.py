@@ -1,5 +1,5 @@
 # Euler's problem 4 - Largest Palindrome Product
-
+import math
 def checkFactors(num):
     factors = []
     for i in range(1, num):
@@ -9,14 +9,19 @@ def checkFactors(num):
     return factors
 
 def main():
-    i = 0
+    i = 2
+
+    max = ""
     while(True):
-        i+=1
+        i = i + 1
         if(str(i) == str(i)[::-1]):
-           print(i)
-           print(checkFactors(i))
-        if(i >= 9009):
-            break
+           factors = checkFactors(i)
+           if(len(str(factors[math.floor(len(factors)/2)])) == 3 and len(str(factors[math.ceil(len(factors)/2)])) == 3):
+               max = i
+           elif(len(str(factors[math.floor(len(factors)/2)])) > 3 and len(str(factors[math.ceil(len(factors)/2)])) > 3):
+               break
+               
+    print(max)
     print("test")
 
 
