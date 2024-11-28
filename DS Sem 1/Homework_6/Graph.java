@@ -10,7 +10,7 @@ public class Graph {
         }
         System.out.println("");
         System.out.println("Bellman ford's ->");
-        w = weights("dijkstra2.txt");
+        w = weights("bellmanford1.txt");
         q = initialiseSingleSource(w, 0);
         bellmanFord(q, w, 0);
         for(Vertex v : q){
@@ -35,9 +35,9 @@ public class Graph {
     public static Vertex dequeue(Vertex[] Q){
         Vertex ret = null;
         for(Vertex v : Q)
-        ret = !v.visited && (ret == null || ret.d > v.d) ? v : ret;
+            ret = !v.visited && (ret == null || ret.d > v.d) ? v : ret;
         if(ret != null)
-        ret.visited = true;   
+            ret.visited = true;   
         return ret;
     }
     
@@ -62,8 +62,6 @@ public class Graph {
     public static void dijkstra(Vertex[] q, double[][] w, int source){
         Vertex u = null;
         while((u = dequeue(q)) != null){
-            // u = dequeue(q);
-            // q.remove(u);
             for(Vertex v : q) {
                 relax(u, v, w);
             }

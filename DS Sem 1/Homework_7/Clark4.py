@@ -1,23 +1,23 @@
-# Euler's problem 4 - sum square diff
-import math
-def sumOfSquare(n):
-    sum = 0
-    for i in range(n+1):
-        sum += i*i
-    return sum
+# Euler's problem 4 - Largest Palindrome Product
 
-def squareOfSum(n):
-    sum = 0
-    for i in range(n+1):
-        sum+=i
-    sum = math.pow(sum, 2)
-    return sum
-
+def checkFactors(num):
+    factors = []
+    for i in range(1, num):
+        if(num%i == 0):
+            factors.append(i)
+    
+    return factors
 
 def main():
-    sumSqr = sumOfSquare(100)
-    sqrSum = squareOfSum(100)
-    print(sqrSum - sumSqr)
+    i = 0
+    while(True):
+        i+=1
+        if(str(i) == str(i)[::-1]):
+           print(i)
+           print(checkFactors(i))
+        if(i >= 9009):
+            break
+    print("test")
 
 
 if __name__ == "__main__":
