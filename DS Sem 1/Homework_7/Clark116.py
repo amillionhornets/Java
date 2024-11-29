@@ -1,5 +1,5 @@
 # Euler's problem 116 - Red, Green or Blue Tiles
-    
+# RUNS TO SLOW
 def findGreenTiles(greyTiles, patterns, curr):
     if checkTilesGreen(greyTiles) and greyTiles not in patterns:
         patterns.append(greyTiles[:])

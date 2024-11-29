@@ -1,3 +1,5 @@
+# Euler's problem 9 - Special Pythagorean Triplet 
+# ANS: 23514624000
 
 def adjacentThirteen(longNum, pivot):
     thirteenNums = []

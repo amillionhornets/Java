@@ -1,5 +1,5 @@
 # Euler's problem 5 - Smallest Multiple
-
+# ANS: 232792560
 def main():
     i = 2
     process = True

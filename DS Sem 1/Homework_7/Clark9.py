@@ -1,4 +1,5 @@
 # Euler's problem 9 - Special Pythagorean Triplet 
+# ANS: 31875000
 import math
 
 def main():

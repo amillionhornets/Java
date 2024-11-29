@@ -1,4 +1,5 @@
 # Euler's problem 6 - sum square diff
+# ANS: 25164150
 import math
 def sumOfSquare(n):
     sum = 0

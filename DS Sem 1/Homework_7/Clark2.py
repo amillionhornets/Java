@@ -1,5 +1,5 @@
 # Euler's problem 2 - Even Fibonacci nums
-
+# ANS: 4613732
 def main():
     a, b = 0, 1
     currNum = 0

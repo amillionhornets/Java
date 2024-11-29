@@ -1,5 +1,5 @@
 # Euler's problem 10 - Prime Sums
-
+# ANS: 142913828922
 def sieve(n):
     primes = [True for i in range(n + 1)]
     i = 2

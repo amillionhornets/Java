@@ -1,4 +1,5 @@
 # Euler's problem 4 - Largest Palindrome Product
+# ANS: 906609
 import math
 def checkFactors(num):
     factors = []

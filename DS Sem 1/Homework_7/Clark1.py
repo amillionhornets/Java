@@ -1,5 +1,5 @@
 # Euler's problem 1 - multiples of 3 and 5
-
+# ANS: 233168
 def main():
     sum = 0
     for i in range(1000):

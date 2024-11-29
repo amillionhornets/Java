@@ -1,4 +1,5 @@
 # Euler's problem 39 - Integer Right Triangles
+# ANS: 840
 import math
 
 def main():

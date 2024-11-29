@@ -1,4 +1,5 @@
 # Euler's problem 16 - project digit sum
+# ANS: 1366
 import math
 
 def sum(num):

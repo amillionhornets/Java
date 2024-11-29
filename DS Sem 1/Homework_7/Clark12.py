@@ -1,4 +1,5 @@
 # Euler's problem 12 - Largest Palindrome Product
+# ANS: 76576500
 import math
 
 
